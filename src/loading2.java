@@ -14,6 +14,33 @@ public class loading2 extends javax.swing.JFrame {
      */
     public loading2() {
         initComponents();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i <= 100; i++) {
+                    try {
+                        jProgressBar1.setValue(i);
+                        Thread.sleep(50);
+                        if(i==100)
+                            System.exit(0);
+                        
+                        if(jProgressBar1.getString().equals("50%")){
+                            lbl.setText("Loading Modules.....");
+                            
+                        }
+                        if(jProgressBar1.getString().equals("25%")){
+                            lbl.setText("Connecting Database....");
+                            //jLabel1.setForeground(Color.WHITE);
+                            }
+                        if(jProgressBar1.getString().equals("95%"))
+                            lbl.setText("Launching Aplication....");
+                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        t.start();
     }
 
     /**
@@ -28,7 +55,7 @@ public class loading2 extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,8 +65,8 @@ public class loading2 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 204, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 410, 240, 20));
+        lbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 410, 240, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Picsart_23-10-30_17-47-04-022.jpg"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 620, 410));
@@ -103,9 +130,9 @@ public class loading2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lbl;
     // End of variables declaration//GEN-END:variables
 }

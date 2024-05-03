@@ -70,7 +70,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="lbl">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
