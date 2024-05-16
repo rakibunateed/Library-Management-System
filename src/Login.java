@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import javax.swing.JOptionPane;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -111,23 +109,31 @@ public class Login extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         try {
-            Connection c=Connect.Connection();
-            PreparedStatement pst=null;
-            ResultSet rs=null;
-            pst=c.prepareStatement( "select * from login where userid=? and psassword=?");
-            pst.setString(1,txtuserid.getText());
-            pst.setString(2, txtpassword.getText());
-            rs=pst.executeQuery();
-            if(rs.next())
-                System.exit(0);
-            else
-                JOptionPane.showMessageDialog(this, "Please enter valid id password");
-            
-            
-            
+            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "ramim@1234");
+             Statement statement = c.createStatement();
+
+            // Retrieve
+            String query = "select * from login where userid=root and psassword=ramim@1234";
+
+            // query for retrieve
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Print the retrieved data
+            while (resultSet.next()) {
+//                int id = resultSet.getInt("id");
+//                String name = resultSet.getString("name");
+//                int age = resultSet.getInt("age");
+//                double marks = resultSet.getDouble("marks");
+//                System.out.println("ID: " + id
+//                        + ", Name: " + name
+//                        + ", Age: " + age
+//                        + ", Marks: " + marks);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // pst=c.prepareStatement( "select * from login where userid=? and psassword=?");
 
 
         
